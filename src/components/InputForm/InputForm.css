@@ -1,0 +1,14 @@
+.InputForm {
+  display: flex;
+  justify-content: center;
+  height: 2.7vh;
+  margin-bottom: 20px;
+}
+
+.InputText {
+  outline: none;
+  margin-right: 10px;
+  border: none;
+  border-radius: 3px;
+  width: 40vw;
+}

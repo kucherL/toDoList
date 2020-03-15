@@ -1,0 +1,13 @@
+.Button {
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  width: 15vw;
+  background-color: #B3DADF;
+  color: #21656E;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 1.8rem;
+  cursor: pointer;
+  height: 3vh;
+}
