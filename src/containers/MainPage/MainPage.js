@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, Fragment } from "react";
 import axios from "../../axios-todos";
 import InputForm from "../../components/InputForm/InputForm";
 import ToDoList from "../../components/ToDoList/ToDoList";
@@ -7,10 +7,11 @@ import Auth from "../Auth/Auth";
 import classes from "./MainPage.css";
 
 const MainPage = () => {
+  const [isFetched, setIsFetched] = useState(false);
   const [isSignUp, setIsSignUp] = useState(true);
   const [token, setToken] = useState(null);
   const [userId, setUserId] = useState(null);
-  const [authShow, setAuthShow] = useState(false);
+  const [authShow, setAuthShow] = useState(true);
   const [temporary, setTemporary] = useState("");
   const [list, setList] = useState([]);
   const [email, setEmail] = useState({
@@ -87,31 +88,21 @@ const MainPage = () => {
   // выводит list, сохраненный на сервере, в зависимости от токена
   const fetchTodoList = () => {
     axios
-      .get("/todos.json?auth=" + token + '&orderBy="userId"&equalTo="' + userId + '"')
+      .get(
+        "/todos.json?auth=" +
+          token +
+          '&orderBy="userId"&equalTo="' +
+          userId +
+          '"'
+      )
       .then(res => {
         for (let obj in res.data) {
-          post = res.data[obj].todoList;
+          post.push(res.data[obj].todoList);
         }
         setList(list.concat(post));
       })
       .catch(err => console.log(err));
-  };
-
-  // TODO: сохранять задачи сразу при введении, а не по нажатию на Сохранить
-  // сохраняет введенные значение list на сервере по клику на Сохранить
-  const saveTodoList = () => {
-    const todoData = {
-      todoList: list,
-      userId: userId
-    };
-    axios.post("/todos.json?auth=" + token, todoData).catch(err => {
-      console.log(err);
-    });
-  };
-
-  // перенаправляет на страницу авторизации, если пользователь не залогинен, при попытке сохранить список задач
-  const saveListHandler = () => {
-    return token === null ? setAuthShow(true) : saveTodoList();
+    setIsFetched(true);
   };
 
   // обнуляет токен и айди
@@ -119,6 +110,7 @@ const MainPage = () => {
     setToken(null);
     setUserId(null);
     setList([]);
+    setAuthShow(true);
   };
 
   // изменяет значение введенной задачи
@@ -126,10 +118,29 @@ const MainPage = () => {
     setTemporary(event.target.value);
   };
 
-  // TODO: убрать баг с дублированием задач
+  let todoData = {
+    todoList: "",
+    taskId: "",
+    userId: ""
+  };
+
   // добавляет в list с тудушниками значение temporary и обнуляет temporary
   const addToListHandler = () => {
     setList(list.concat(temporary));
+    todoData = {
+      todoList: temporary,
+      taskId: "",
+      userId: userId
+    };
+    axios
+      .post("/todos.json?auth=" + token, todoData)
+      .then(res => {
+        todoData.taskId = res.data.name;
+        console.log(todoData);
+      })
+      .catch(err => {
+        console.log(err);
+      });
     setTemporary("");
   };
 
@@ -139,6 +150,13 @@ const MainPage = () => {
     const changedArr = [...list];
     changedArr.splice(index, 1);
     setList(changedArr);
+    axios
+      .delete(
+        "https://react-todo-list-1785e.firebaseio.com/todos/" +
+          todoData.todoList.indexOf(list[index])
+      )
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
   };
 
   // возвращает компонент с ранее введенными задачами
@@ -152,41 +170,42 @@ const MainPage = () => {
     );
   });
 
-  let saveList = "";
-  // выводит кнопку Сохранить, если на страницу есть хотя бы одна задача
-  if (list.length > 0) {
-    saveList = <Button clicked={saveListHandler}>Сохранить</Button>;
-  }
-
   const authForm = (
     <Auth
-      onChangeSwitchAuthModeHandler={switchAuthModeHandler}
+      sighUpHandler={switchAuthModeHandler}
+      isSignUp={isSignUp}
       onChangeEmailChangeHandler={emailChangeHandler}
       onChangePasswordChangeHandler={passwordChangeHandler}
       onChangeSignInHandler={signInHandler}
     />
   );
 
+  const backgroundStyle = {
+    background: "rgba(0, 0, 0, 0.6)"
+  };
+
   return (
-    <div className={classes.MainPage}>
-      {token !== null ? (
-        <Button clicked={logout}>Выйти</Button>
-      ) : isSignUp ? (
-        <Button clicked={() => setAuthShow(!authShow)}>Войти</Button>
-      ) : (
-        <Button clicked={() => setAuthShow(!authShow)}>Регистрация</Button>
-      )}
+    <Fragment>
       {authShow ? authForm : null}
-      <Button clicked={fetchTodoList}>Загрузить задачи</Button>
-      <p className={classes.Text}>ToDo List:</p>
-      <InputForm
-        currentValue={temporary}
-        changeTemporaryState={temporaryChange}
-        addTask={addToListHandler}
-      />
-      {tasksList}
-      {saveList}
-    </div>
+      <div className={classes.Header} style={authShow ? backgroundStyle : null}>
+        {token !== null ? <Button clicked={logout}>Выйти</Button> : null}
+        {!isFetched && !authShow ? (
+          <Button clicked={fetchTodoList}>Загрузить задачи</Button>
+        ) : null}
+      </div>
+      <div
+        className={classes.MainPage}
+        style={authShow ? backgroundStyle : null}
+      >
+        <p className={classes.Text}>ToDo List:</p>
+        <InputForm
+          currentValue={temporary}
+          changeTemporaryState={temporaryChange}
+          addTask={addToListHandler}
+        />
+        {tasksList}
+      </div>
+    </Fragment>
   );
 };
 

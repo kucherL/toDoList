@@ -3,10 +3,8 @@
   height: 3vh;
   width: 50vw;
   background-color: #c1dee2;
-  border: solid, #21656e, 2px;
   border-radius: 3px;
   color: #21656e;
-  font-family: inherit;
   font-size: 1.8rem;
   font-weight: bold;
   text-align: left;
@@ -14,6 +12,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  animation-duration: 1s;
+  animation-name: display;
 }
 
 .Icon {
@@ -22,4 +22,18 @@
   color: #823246;
   height: 25px;
   width: auto;
+}
+
+@keyframes display {
+  from {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  to {
+    opacity: 1;
+  }
 }

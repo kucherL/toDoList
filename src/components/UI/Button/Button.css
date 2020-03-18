@@ -2,7 +2,7 @@
   outline: none;
   border: none;
   border-radius: 3px;
-  width: 15vw;
+  width: 145px;
   background-color: #B3DADF;
   color: #21656E;
   font-family: inherit;
@@ -10,4 +10,8 @@
   font-size: 1.8rem;
   cursor: pointer;
   height: 3vh;
+}
+
+.Button:hover {
+  background-color: salmon;
 }
