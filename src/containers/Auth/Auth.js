@@ -2,7 +2,7 @@ import React from "react";
 import Button from "../../components/UI/Button/Button";
 import classes from "./Auth.css";
 
-const auth = props => {
+const auth = (props) => {
   let text = "";
 
   return (
@@ -23,6 +23,7 @@ const auth = props => {
         placeholder="Введите пароль"
       />
       <Button clicked={props.onChangeSignInHandler}>Отправить</Button>
+      <Button clicked={props.signInWithGoogleHandler}>Google</Button>
     </div>
   );
 };

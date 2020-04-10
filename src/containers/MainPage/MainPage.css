@@ -1,4 +1,5 @@
 .MainPage {
+  margin-top: 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,6 +33,6 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  background: antiquewhite;
-  position: relative;
+  background: #B3DADF;
+  position: fixed;
 }
