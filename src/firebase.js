@@ -15,31 +15,27 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 export const firestore = firebase.firestore();
-
 export const auth = firebase.auth();
-export const provider = new firebase.auth.GoogleAuthProvider();
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
 export const signOut = () => auth.signOut();
 
-export const createUserProfile = async (user, additionalData) => {
+const provider = new firebase.auth.GoogleAuthProvider();
+
+export const signInWithGoogle = () => {
+  auth.signInWithPopup(provider);
+};
+
+export const createUserProfile = async (user) => {
   if (!user) return;
-  const userRef = firestore.doc(`users/${user.id}`);
+  const userRef = firestore.doc(`users/${user.uid}`);
   const snapshot = await userRef.get();
 
   if (!snapshot.exists) {
-    const { displayName, email, photoURL } = user;
+    const { email } = user;
     const createdAt = new Date();
-    try {
-      await userRef.set({
-        displayName,
-        email,
-        photoURL,
-        createdAt,
-        ...additionalData,
-      });
-    } catch (err) {
-      console.log(err);
-    }
+    await userRef.set({
+      email,
+      createdAt,
+    });
   }
 
   return getUserDocument(user.uid);
@@ -47,11 +43,7 @@ export const createUserProfile = async (user, additionalData) => {
 
 export const getUserDocument = async (uid) => {
   if (!uid) return null;
-  try {
-    return firestore.collection("users").doc(uid);
-  } catch (error) {
-    console.log(error);
-  }
+  return firestore.collection("users").doc(uid);
 };
 
 export default firebase;

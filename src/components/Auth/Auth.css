@@ -14,19 +14,6 @@
   animation-name: slidein;
 }
 
-.AuthInputText {
-  outline: none;
-  border: none;
-  border-radius: 3px;
-  width: 40vw;
-  height: 30px;
-  margin: 20px auto;
-  padding: 0 1rem;
-  font-family: inherit;
-  font-size: 1.8rem;
-  background-color: rgb(220, 241, 243);
-}
-
 @keyframes slidein {
   from {
     margin-top: -100%;

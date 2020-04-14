@@ -10,6 +10,7 @@
   font-size: 1.8rem;
   cursor: pointer;
   height: 3vh;
+  margin-bottom: 1rem;
 }
 
 .Button:hover {

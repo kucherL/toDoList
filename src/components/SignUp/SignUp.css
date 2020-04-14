@@ -1,0 +1,51 @@
+.SignUpForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.SignUpTitle {
+  font-family: inherit;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 1rem 0;
+  color: #b3dadf;
+}
+
+.SignUpInput {
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  width: 30vw;
+  height: 30px;
+  padding: 0 1rem;
+  font-family: inherit;
+  font-size: 1.8rem;
+  background-color: rgb(220, 241, 243);
+  margin-bottom: 1rem;
+}
+
+.SignUpSubmit {
+  width: 20rem;
+  height: 3rem;
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  background-color: black;
+  background-color: #b3dadf;
+  color: #21656e;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 2rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SignUpSubmit:hover {
+  color: #071618;
+}
