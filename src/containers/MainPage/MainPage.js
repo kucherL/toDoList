@@ -138,7 +138,7 @@ const MainPage = () => {
   const deleteErrorMessage = () => {
     setTimeout(() => {
       setError(null);
-    }, 2000);
+    }, 3000);
     setAuthShow(true);
   };
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import classes from "./ToDoList.css";
 
 const toDoList = (props) => {
@@ -10,7 +10,7 @@ const toDoList = (props) => {
       <FontAwesomeIcon
         className={classes.Icon}
         size="2x"
-        icon={faMinusCircle}
+        icon={faTimes}
         onClick={props.click}
       />
     </div>

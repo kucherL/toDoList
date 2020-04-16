@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./InputForm.css";
 import Button from "../UI/Button/Button";
 
-const inputForm = props => {
+const inputForm = (props) => {
   return (
     <div className={classes.InputForm}>
       <input
@@ -12,7 +12,9 @@ const inputForm = props => {
         value={props.currentValue}
         placeholder="Добавьте задачу"
       />
-      <Button clicked={props.addTask}>Добавить</Button>
+      <Button clicked={props.addTask}>
+        Добавить
+      </Button>
     </div>
   );
 };

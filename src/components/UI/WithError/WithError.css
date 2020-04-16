@@ -1,21 +1,26 @@
 .ErrorContainer {
   display: flex;
+  flex-direction: column;
+  width: 40rem;
+  background: linear-gradient(45deg, #6DB4BE, #071618);
   align-items: center;
   justify-content: center;
-  width: 70vw;
-  height: 57vh;
-  background: linear-gradient(45deg, #6DB4BE, #071618);
-  z-index: 102;
-  position: fixed;
-  border-radius: 10px;
-  top: 160px;
+  z-index: 100;
+  position: relative;
+  border-radius: 3px;
+  top: 5rem
 }
 
 .ErrorText {
   border-radius: 3px;
-  width: 40vw;
-  height: 30px;
+  width: 70%;
   font-family: inherit;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: #b3dadf;
+}
+
+@media (max-width: 40rem) {
+  .ErrorContainer {
+    width: 90%;
+  }
 }

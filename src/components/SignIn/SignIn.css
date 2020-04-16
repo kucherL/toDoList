@@ -3,14 +3,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 2rem;
+  margin: 1rem;
+  width: 80%;
 }
 
 .SignInTitle {
   font-family: inherit;
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   font-weight: bold;
-  margin: 1rem 0;
+  margin-bottom: 1rem;
   color: #b3dadf;
 }
 
@@ -18,32 +19,30 @@
   outline: none;
   border: none;
   border-radius: 3px;
-  width: 30vw;
-  height: 30px;
+  width: 100%;
+  height: 3rem;
   padding: 0 1rem;
   font-family: inherit;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   background-color: rgb(220, 241, 243);
   margin-bottom: 1rem;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .SignInSubmit {
-  width: 20rem;
-  height: 3rem;
   outline: none;
   border: none;
   border-radius: 3px;
-  background-color: black;
-  background-color: #b3dadf;
-  color: #21656e;
+  width: auto;
+  padding: 0 1rem;
+  background-color: #B3DADF;
+  color: #21656E;
   font-family: inherit;
+  font-size: 1.5rem;
   font-weight: bold;
-  font-size: 2rem;
   cursor: pointer;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 3rem;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .SignInSubmit:hover {

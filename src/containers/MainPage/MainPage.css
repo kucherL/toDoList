@@ -17,11 +17,10 @@
 }
 
 .Text {
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: bold;
   margin: 0;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 1rem;
   position: relative;
   z-index: 10;
 }

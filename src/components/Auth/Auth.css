@@ -1,24 +1,29 @@
 .Auth {
   display: flex;
   flex-direction: column;
-  width: 70vw;
-  height: 57vh;
+  width: 40rem;
   background: linear-gradient(45deg, #6DB4BE, #071618);
   align-items: center;
   justify-content: center;
   z-index: 100;
-  position: fixed;
-  border-radius: 10px;
-  top: 160px;
-  animation-duration: 1.5s;
+  position: relative;
+  border-radius: 3px;
+  animation-duration: 2s;
   animation-name: slidein;
+  top: 5rem
 }
 
 @keyframes slidein {
   from {
-    margin-top: -100%;
+    margin-top: -100rem;
   }
   to {
-    margin-top: 0%;
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 40rem) {
+  .Auth {
+    width: 90%;
   }
 }
