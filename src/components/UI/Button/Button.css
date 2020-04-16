@@ -3,15 +3,13 @@
   border: none;
   border-radius: 3px;
   width: auto;
-  padding: 0 1rem;
+  padding: 0.5rem 0.5rem;
   background-color: #B3DADF;
   color: #21656E;
   font-family: inherit;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  height: 3rem;
-  margin: 1rem;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 

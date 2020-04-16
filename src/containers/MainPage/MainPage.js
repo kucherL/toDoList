@@ -20,8 +20,11 @@ import {
 import { cleanup } from "@testing-library/react";
 
 const MainPage = () => {
+  let date = new Date();
+
   const [authShow, setAuthShow] = useState(true);
   const [temporary, setTemporary] = useState("");
+  const [time, setTime] = useState(date.getMilliseconds());
   const [list, setList] = useState([]);
   const [emailSignUp, setEmailSignUp] = useState("");
   const [passwordSignUp, setPasswordSignUp] = useState("");
@@ -35,7 +38,7 @@ const MainPage = () => {
       if (user) {
         setUser(user.uid);
         setAuthShow(false);
-        await fetchTodoList();
+        await fetchTodoList(user.uid);
       } else {
         try {
         } catch (err) {
@@ -45,7 +48,7 @@ const MainPage = () => {
       }
     });
     return cleanup();
-  }, [user]);
+  }, []);
 
   const emailSignUpChangeHandler = (event) => {
     setEmailSignUp(event.target.value);
@@ -106,21 +109,21 @@ const MainPage = () => {
     setAuthShow(true);
   };
 
-  const fetchTodoList = async () => {
+  const fetchTodoList = async (user) => {
     const tasks = await fetchList(user);
     let posts = tasks.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
     setList(posts);
   };
-
-  console.log(list);
 
   const temporaryChange = (event) => {
     setTemporary(event.target.value);
   };
 
   const addToListHandler = async () => {
+    setTime(date.getMilliseconds());
     try {
-      const taskData = await addNewTask({ temporary, user });
+      console.log(time);
+      const taskData = await addNewTask({ temporary, user, time });
       const toDoData = {
         id: taskData.id,
         ...taskData.data(),

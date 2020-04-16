@@ -1,3 +1,11 @@
+.BackgroundError {
+  position: fixed;
+  z-index: 105;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+}
+
 .ErrorContainer {
   display: flex;
   flex-direction: column;
@@ -5,10 +13,13 @@
   background: linear-gradient(45deg, #6DB4BE, #071618);
   align-items: center;
   justify-content: center;
-  z-index: 100;
-  position: relative;
+  z-index: 110;
+  position: absolute;
   border-radius: 3px;
-  top: 5rem
+  animation-duration: 2s;
+  animation-name: slidein;
+  margin: 10rem 0;
+  height: auto;
 }
 
 .ErrorText {
@@ -16,7 +27,8 @@
   width: 70%;
   font-family: inherit;
   font-size: 1.5rem;
-  color: #b3dadf;
+  font-weight: bold;
+  color: #e7b52b;
 }
 
 @media (max-width: 40rem) {

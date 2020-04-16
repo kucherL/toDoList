@@ -1,13 +1,13 @@
 .ToDoList {
-  margin: 1rem;
-  height: auto;
+  margin-bottom: 1rem;
   width: 50vw;
   background-color: #c1dee2;
   border-radius: 3px;
   color: #21656e;
   font-family: inherit;
-  font-size: 1.5rem;
-  padding: 0 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.5rem 0.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -19,7 +19,7 @@
 .Icon {
   cursor: pointer;
   color: #823246;
-  height: 1.8rem;
+  height: 1.3rem;
   width: auto;
   outline: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
