@@ -17,6 +17,7 @@ import {
   deleteTask,
   errorHandler,
 } from "../../utilities";
+import { cleanup } from "@testing-library/react";
 
 const MainPage = () => {
   const [authShow, setAuthShow] = useState(true);
@@ -30,11 +31,11 @@ const MainPage = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    auth.onAuthStateChanged((user) => {
+    auth.onAuthStateChanged(async (user) => {
       if (user) {
         setUser(user.uid);
         setAuthShow(false);
-        fetchTodoList();
+        await fetchTodoList();
       } else {
         try {
         } catch (err) {
@@ -43,6 +44,7 @@ const MainPage = () => {
         }
       }
     });
+    return cleanup();
   }, [user]);
 
   const emailSignUpChangeHandler = (event) => {
@@ -98,16 +100,19 @@ const MainPage = () => {
   }
 
   const logout = () => {
-    signOut();
     setList([]);
+    setUser(null);
+    signOut();
     setAuthShow(true);
   };
 
   const fetchTodoList = async () => {
     const tasks = await fetchList(user);
-    const posts = tasks.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    let posts = tasks.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
     setList(posts);
   };
+
+  console.log(list);
 
   const temporaryChange = (event) => {
     setTemporary(event.target.value);
@@ -140,6 +145,10 @@ const MainPage = () => {
       setError(null);
     }, 3000);
     setAuthShow(true);
+    setEmailSignUp("");
+    setPasswordSignUp("");
+    setEmailSignIn("");
+    setPasswordSignIn("");
   };
 
   const tasksList = list.map((task, index) => {
