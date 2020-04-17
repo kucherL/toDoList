@@ -20,11 +20,9 @@ import {
 import { cleanup } from "@testing-library/react";
 
 const MainPage = () => {
-  let date = new Date();
-
   const [authShow, setAuthShow] = useState(true);
   const [temporary, setTemporary] = useState("");
-  const [time, setTime] = useState(date.getMilliseconds());
+  const [time, setTime] = useState(Math.floor(new Date().getTime()/1000.0));
   const [list, setList] = useState([]);
   const [emailSignUp, setEmailSignUp] = useState("");
   const [passwordSignUp, setPasswordSignUp] = useState("");
@@ -111,7 +109,7 @@ const MainPage = () => {
 
   const fetchTodoList = async (user) => {
     const tasks = await fetchList(user);
-    let posts = tasks.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    let posts = tasks.docs.map((doc) => ({ id: doc.id, ...doc.data() })).sort((a, b) => {return a.time - b.time});
     setList(posts);
   };
 
@@ -120,7 +118,7 @@ const MainPage = () => {
   };
 
   const addToListHandler = async () => {
-    setTime(date.getMilliseconds());
+    setTime(Math.floor(new Date().getTime()/1000.0));
     try {
       console.log(time);
       const taskData = await addNewTask({ temporary, user, time });
