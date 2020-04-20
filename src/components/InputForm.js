@@ -1,12 +1,11 @@
 import React from "react";
-import classes from "./InputForm.css";
-import Button from "../UI/Button/Button";
+import Button from "./UI/Button";
 
 const inputForm = (props) => {
   return (
-    <div className={classes.InputForm}>
+    <div className="InputForm">
       <input
-        className={classes.InputText}
+        className="InputText"
         type="text"
         onChange={props.changeTemporaryState}
         value={props.currentValue}

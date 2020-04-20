@@ -1,11 +1,10 @@
 import React from "react";
-import classes from "./Auth.css";
-import SignIn from "../SignIn/SignIn";
-import SignUp from "../SignUp/SignUp";
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
 
 const auth = (props) => {
   return (
-    <div className={classes.Auth}>
+    <div className="Auth">
       <SignIn
         emailSignIn={props.emailSignIn}
         emailSignInChangeHandler={props.emailSignInChangeHandler}
