@@ -182,7 +182,7 @@ const MainPage = () => {
 
   const header = (
     <div className={classes.Header}>
-      {!authShow ? <Button clicked={logout}>Выйти</Button> : null}
+      <Button clicked={logout}>Выйти</Button>
     </div>
   );
 
@@ -199,13 +199,14 @@ const MainPage = () => {
   );
 
   return (
-    <Fragment>
-      {error ? errorHandler(error) : null}
-      {authShow ? <Backdrop /> : null}
-      {authShow ? authForm : null}
-      {authShow ? null : header}
-      {authShow ? null : mainPage}
-    </Fragment>
+    <h2>MainPage</h2>
+    // <Fragment>
+    //   {error ? errorHandler(error) : null}
+    //   {authShow ? <Backdrop /> : null}
+    //   {authShow ? authForm : null}
+    //   {authShow ? null : header}
+    //   {authShow ? null : mainPage}
+    // </Fragment>
   );
 };
 
