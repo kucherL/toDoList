@@ -1,18 +1,29 @@
 import React, { useState, useEffect, Fragment } from "react";
 import MainPage from "./containers/MainPage";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ComplitedTasks from "./containers/ComplitedTasks";
 import ToDoList from "./components/ToDoList";
-import Button from "./components/UI/Button";
+import Header from "./components/Header";
 import Auth from "./components/Auth";
 import Backdrop from "./components/UI/Backdrop";
+import WithError from "./components/UI/WithError";
 import { auth, createUserProfile, signOut, signInWithGoogle } from "./firebase";
-import { fetchList, addNewTask, deleteTask, compliteTask, errorHandler } from "./utilities";
+import {
+  fetchList,
+  addNewTask,
+  deleteTask,
+  compliteTask,
+  fetchComplited,
+} from "./utilities";
 
 const App = () => {
   const [authShow, setAuthShow] = useState(true);
   const [temporary, setTemporary] = useState("");
   const [time, setTime] = useState(Math.floor(new Date().getTime() / 1000.0));
+  const [complitedTime, setComplitedTime] = useState(
+    Math.floor(new Date().getTime() / 1000.0)
+  );
+  const [complited, setComplited] = useState([]);
   const [list, setList] = useState([]);
   const [emailSignUp, setEmailSignUp] = useState("");
   const [passwordSignUp, setPasswordSignUp] = useState("");
@@ -91,6 +102,7 @@ const App = () => {
 
   const logout = () => {
     setList([]);
+    setComplited([]);
     setUser(null);
     signOut();
     setAuthShow(true);
@@ -113,7 +125,6 @@ const App = () => {
   const addToListHandler = async () => {
     setTime(Math.floor(new Date().getTime() / 1000.0));
     try {
-      console.log(time);
       const taskData = await addNewTask({ temporary, user, time });
       const toDoData = {
         id: taskData.id,
@@ -135,16 +146,33 @@ const App = () => {
   };
 
   const compliteTaskHandler = async (id) => {
+    setComplitedTime(Math.floor(new Date().getTime() / 1000.0));
     const allTasks = list;
-    allTasks.filter((task) => id !== task.id);
-    await compliteTask(id, user);
+    const tasks = allTasks.filter((task) => id !== task.id);
+    await compliteTask(id, user, complitedTime);
+    await deleteTask(id, user);
+    setList(tasks);
+  };
+
+  const fetchListOfComplitedTasks = async () => {
+    try {
+      const tasks = await fetchComplited(user);
+      let posts = tasks.docs
+        .map((doc) => ({ id: doc.id, ...doc.data() }))
+        .sort((a, b) => {
+          return b.complitedTime - a.complitedTime;
+        });
+      setComplited(posts);
+    } catch (err) {
+      setError(err.message);
+      deleteErrorMessage();
+    }
   };
 
   const deleteErrorMessage = () => {
     setTimeout(() => {
       setError(null);
     }, 3000);
-    setAuthShow(true);
     setEmailSignUp("");
     setPasswordSignUp("");
     setEmailSignIn("");
@@ -181,21 +209,18 @@ const App = () => {
   return (
     <Router>
       <div className="App">
-        {authShow ? null : (
-          <div className="Header">
-            <Link to="/">Home</Link>
-            <Link to="/complited">Выполненные задачи</Link>
-            <Button clicked={logout}>Выйти</Button>
-          </div>
-        )}
+        {authShow ? null : <Header logout={logout} />}
         <Switch>
-          <Route path="/complited">
-            <ComplitedTasks user={user} />
-          </Route>
           <Fragment>
-            {error ? errorHandler(error) : null}
+            {error ? <WithError>{error}</WithError> : null}
             {authShow ? <Backdrop /> : null}
             {authShow ? authForm : null}
+            <Route path="/complited">
+              <ComplitedTasks
+                fetchListOfComplitedTasks={fetchListOfComplitedTasks}
+                complited={complited}
+              />
+            </Route>
             {authShow ? null : (
               <Route exact path="/">
                 <MainPage

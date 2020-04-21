@@ -1,34 +1,20 @@
-import React, { Fragment, useEffect, useState } from "react";
-import Task from "../components/task";
-import { fetchComplited } from "../utilities";
+import React, { useEffect } from "react";
+import Task from "../components/Task";
 
 const ComplitedTasks = (props) => {
-  const [complited, setComplited] = useState([]);
-
   useEffect(() => {
-    fetchListOfComplitedTasks();
+    props.fetchListOfComplitedTasks();
   }, []);
 
-  const fetchListOfComplitedTasks = async () => {
-    const tasks = await fetchComplited(props.user);
-    let posts = tasks.docs
-      .map((doc) => ({ id: doc.id, ...doc.data() }))
-      .sort((a, b) => {
-        return a.time - b.time;
-      });
-    setComplited(posts);
-    console.log(complited);
-  };
-
-  const tasksList = complited.map((task, index) => {
+  const tasksList = props.complited.map((task, index) => {
     return <Task task={task} key={index} />;
   });
 
   return (
-    <Fragment>
-      <p className="Text">Выполненные задачи</p>
+    <div className="ComplitedTasks">
+      <p className="ComplitedTasks__title">Выполненные задачи</p>
       <div>{tasksList}</div>
-    </Fragment>
+    </div>
   );
 };
 

@@ -6,18 +6,20 @@ const toDoList = (props) => {
   return (
     <div className="ToDoList">
       {props.task.temporary}
-      <FontAwesomeIcon
-        className="Icon"
-        size="2x"
-        icon={faCheck}
-        onClick={props.clickComplite}
-      />
-      <FontAwesomeIcon
-        className="Icon"
-        size="2x"
-        icon={faTimes}
-        onClick={props.clickDel}
-      />
+      <div className="Icons-container">
+        <FontAwesomeIcon
+          className="Icon"
+          size="2x"
+          icon={faCheck}
+          onClick={props.clickComplite}
+        />
+        <FontAwesomeIcon
+          className="Icon"
+          size="2x"
+          icon={faTimes}
+          onClick={props.clickDel}
+        />
+      </div>
     </div>
   );
 };

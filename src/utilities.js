@@ -20,12 +20,13 @@ export const deleteTask = async (id, user) => {
   await firestore.doc(`users/${user}/tasks/${id}`).delete();
 };
 
-export const compliteTask = async (id, user) => {
+export const compliteTask = async (id, user, complitedTime) => {
   let complitedUsersTask = await firestore
     .doc(`users/${user}/tasks/${id}`)
     .get();
     complitedUsersTask = {
     id: complitedUsersTask.id,
+    complitedTime: complitedTime,
     ...complitedUsersTask.data(),
   };
   await firestore.collection(`users/${user}/complited`).add(complitedUsersTask);
@@ -35,5 +36,3 @@ export const fetchComplited = async (user) => {
   const response = await firestore.collection(`users/${user}/complited`).get();
   return response;
 };
-
-export const errorHandler = (error) => <WithError>{error}</WithError>;
