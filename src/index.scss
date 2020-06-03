@@ -82,20 +82,27 @@ body {
   height: 60px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   background: #b3dadf;
   position: fixed;
   padding-right: 3rem;
+  padding-left: 3rem;
 
-  .Link {
+  &__copyright {
+    font-family: inherit;
+    font-weight: bold;
+    color: #21656e;
+  }
+
+  a {
     text-decoration: none;
     font-family: inherit;
     font-weight: bold;
     color: #21656e;
-    margin: 0 1rem;
+    margin: 0 0.5rem;
   }
 
-  .Link:hover {
+  a:hover {
     color: #071c1f;
   }
 }
@@ -128,6 +135,12 @@ body {
 @media (max-width: 40rem) {
   .Auth {
     width: 90%;
+  }
+
+  .Header {
+    &__copyright {
+      display: none;
+    }
   }
 }
 

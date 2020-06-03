@@ -12,13 +12,25 @@ const Header = (props) => {
 
   return (
     <div className="Header">
-      <Link to="/" className="Link">
-        Home
-      </Link>
-      <Link to="/complited" className="Link">
-        Complited tasks
-      </Link>
-      <Button clicked={newLogout}>Sign out</Button>
+      <p className="Header__copyright">
+        2020 |
+        <a
+          href="https://kucherl.github.io/portfolio/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Elizaveta Kucherova
+        </a>
+      </p>
+      <div>
+        <Link to="/" className="Link">
+          Home
+        </Link>
+        <Link to="/complited" className="Link">
+          Complited tasks
+        </Link>
+        <Button clicked={newLogout}>Sign out</Button>
+      </div>
     </div>
   );
 };
