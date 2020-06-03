@@ -3,7 +3,7 @@ import React from "react";
 const SignUp = (props) => {
   return (
     <form onSubmit={props.handleSignUpSubmit} className="SignUpForm">
-      <h2 className="SignUpTitle">Регистрация</h2>
+      <h2 className="SignUpTitle">Sign up</h2>
       <input
         className="SignUpInput"
         type="email"
@@ -20,11 +20,7 @@ const SignUp = (props) => {
         value={props.passwordSignUp}
         onChange={props.passwordSignUpChangeHandler}
       />
-      <input
-        className="SignUpSubmit"
-        type="submit"
-        value="Зарегистрироваться"
-      />
+      <input className="SignUpSubmit" type="submit" value="Sign up" />
     </form>
   );
 };

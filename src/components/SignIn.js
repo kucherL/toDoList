@@ -5,7 +5,7 @@ const SignIn = (props) => {
   return (
     <Fragment>
       <form onSubmit={props.handleSignInSubmit} className="SignInForm">
-        <h2 className="SignInTitle">Войти</h2>
+        <h2 className="SignInTitle">Sign in</h2>
         <input
           className="SignInInput"
           type="email"
@@ -22,9 +22,9 @@ const SignIn = (props) => {
           value={props.passwordSignIn}
           onChange={props.passwordSignInChangeHandler}
         />
-        <input className="SignInSubmit" type="submit" value="Войти" />
+        <input className="SignInSubmit" type="submit" value="Sign in" />
       </form>
-      <Button clicked={props.handlSignInWithGoogle}>Войти через Google</Button>
+      <Button clicked={props.handlSignInWithGoogle}>Sign in with Google</Button>
     </Fragment>
   );
 };

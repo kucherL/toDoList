@@ -9,11 +9,9 @@ const inputForm = (props) => {
         type="text"
         onChange={props.changeTemporaryState}
         value={props.currentValue}
-        placeholder="Добавьте задачу"
+        placeholder="Add task"
       />
-      <Button clicked={props.addTask}>
-        Добавить
-      </Button>
+      <Button clicked={props.addTask}>Add</Button>
     </div>
   );
 };

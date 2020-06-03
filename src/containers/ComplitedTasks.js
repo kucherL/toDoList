@@ -12,7 +12,7 @@ const ComplitedTasks = (props) => {
 
   return (
     <div className="ComplitedTasks">
-      <p className="ComplitedTasks__title">Выполненные задачи</p>
+      <p className="ComplitedTasks__title">Complited tasks</p>
       <div>{tasksList}</div>
     </div>
   );

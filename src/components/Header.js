@@ -1,5 +1,5 @@
 import React from "react";
-import {Link, useHistory} from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Button from "./UI/Button";
 
 const Header = (props) => {
@@ -8,7 +8,7 @@ const Header = (props) => {
   const newLogout = () => {
     history.push("/");
     props.logout();
-  }
+  };
 
   return (
     <div className="Header">
@@ -16,9 +16,9 @@ const Header = (props) => {
         Home
       </Link>
       <Link to="/complited" className="Link">
-        Выполненные задачи
+        Complited tasks
       </Link>
-      <Button clicked={newLogout}>Выйти</Button>
+      <Button clicked={newLogout}>Sign out</Button>
     </div>
   );
 };

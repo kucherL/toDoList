@@ -5,7 +5,7 @@
 }
 
 html {
-  font-family: 'Open Sans Condensed', sans-serif;
+  font-family: "Open Sans Condensed", sans-serif;
   font-size: 1rem;
 }
 
@@ -20,7 +20,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(45deg, #6DB4BE, #071618);
+  background: linear-gradient(45deg, #6db4be, #071618);
 }
 
 .ComplitedTasks {
@@ -83,7 +83,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  background: #B3DADF;
+  background: #b3dadf;
   position: fixed;
   padding-right: 3rem;
 
@@ -91,7 +91,7 @@ body {
     text-decoration: none;
     font-family: inherit;
     font-weight: bold;
-    color: #21656E;
+    color: #21656e;
     margin: 0 1rem;
   }
 
@@ -104,7 +104,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 40rem;
-  background: linear-gradient(45deg, #6DB4BE, #071618);
+  background: linear-gradient(45deg, #6db4be, #071618);
   align-items: center;
   justify-content: center;
   z-index: 100;
@@ -199,8 +199,8 @@ body {
   border-radius: 3px;
   width: auto;
   padding: 0.5rem 0.5rem;
-  background-color: #B3DADF;
-  color: #21656E;
+  background-color: #b3dadf;
+  color: #21656e;
   font-family: inherit;
   font-size: 1rem;
   font-weight: bold;
@@ -248,8 +248,8 @@ body {
   border-radius: 3px;
   width: auto;
   padding: 0.5rem 0.5rem;
-  background-color: #B3DADF;
-  color: #21656E;
+  background-color: #b3dadf;
+  color: #21656e;
   font-family: inherit;
   font-size: 1rem;
   font-weight: bold;
@@ -270,7 +270,7 @@ body {
   font-family: inherit;
   font-size: 1rem;
   font-weight: bold;
-  padding: 0.5rem 0.5rem;
+  padding: 0.2rem 0.2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -282,19 +282,14 @@ body {
 .Icon {
   right: 0;
   cursor: pointer;
-  color: rgb(114, 21, 44);
-  height: 1.3rem;
+  fill: #72152c;
+  height: 2rem;
   width: auto;
   outline: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .Icon:first-child {
-  color: rgb(13, 146, 13);
-}
-
-.Icon:hover {
-  color: #071c1f;
+  fill: #0d920d;
 }
 
 @keyframes display {
@@ -331,8 +326,8 @@ body {
   border-radius: 3px;
   width: auto;
   padding: 0.5rem 0.5rem;
-  background-color: #B3DADF;
-  color: #21656E;
+  background-color: #b3dadf;
+  color: #21656e;
   font-family: inherit;
   font-size: 1rem;
   font-weight: bold;
@@ -343,8 +338,6 @@ body {
 .Button:hover {
   color: #071c1f;
 }
-
-
 
 .BackgroundError {
   position: fixed;
@@ -358,7 +351,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 40rem;
-  background: linear-gradient(45deg, #6DB4BE, #071618);
+  background: linear-gradient(45deg, #6db4be, #071618);
   align-items: center;
   justify-content: center;
   z-index: 110;
