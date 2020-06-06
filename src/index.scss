@@ -119,8 +119,107 @@ body {
   border-radius: 3px;
   animation-duration: 2s;
   animation-name: slidein;
-  margin: 2rem 0;
+  margin-top: 20%;
+  padding: 1rem;
   height: auto;
+
+  .SignInForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+    width: 80%;
+  }
+
+  .SignInTitle {
+    font-family: inherit;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #b3dadf;
+  }
+
+  .SignInInput {
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    width: 100%;
+    padding: 0.5rem 0.5rem;
+    font-family: inherit;
+    font-size: 1rem;
+    background-color: rgb(220, 241, 243);
+    margin-bottom: 1rem;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+
+  .SignInSubmit {
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    width: auto;
+    padding: 0.5rem 0.5rem;
+    background-color: #b3dadf;
+    color: #21656e;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+
+  .SignInSubmit:hover {
+    color: #071618;
+  }
+
+  .SignUpForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+    width: 80%;
+  }
+
+  .SignUpTitle {
+    font-family: inherit;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #b3dadf;
+  }
+
+  .SignUpInput {
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    width: 100%;
+    padding: 0.5rem 0.5rem;
+    font-family: inherit;
+    font-size: 1rem;
+    background-color: rgb(220, 241, 243);
+    margin-bottom: 1rem;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+
+  .SignUpSubmit {
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    width: auto;
+    padding: 0.5rem 0.5rem;
+    background-color: #b3dadf;
+    color: #21656e;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+
+  .SignUpSubmit:hover {
+    color: #071618;
+  }
 }
 
 @keyframes slidein {
@@ -128,7 +227,7 @@ body {
     margin-top: -100rem;
   }
   to {
-    margin-top: 2rem;
+    margin-top: 20%;
   }
 }
 
@@ -176,104 +275,6 @@ body {
   }
 }
 
-.SignInForm {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 1rem;
-  width: 80%;
-}
-
-.SignInTitle {
-  font-family: inherit;
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  color: #b3dadf;
-}
-
-.SignInInput {
-  outline: none;
-  border: none;
-  border-radius: 3px;
-  width: 100%;
-  padding: 0.5rem 0.5rem;
-  font-family: inherit;
-  font-size: 1rem;
-  background-color: rgb(220, 241, 243);
-  margin-bottom: 1rem;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-.SignInSubmit {
-  outline: none;
-  border: none;
-  border-radius: 3px;
-  width: auto;
-  padding: 0.5rem 0.5rem;
-  background-color: #b3dadf;
-  color: #21656e;
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-.SignInSubmit:hover {
-  color: #071618;
-}
-
-.SignUpForm {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 1rem;
-  width: 80%;
-}
-
-.SignUpTitle {
-  font-family: inherit;
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  color: #b3dadf;
-}
-
-.SignUpInput {
-  outline: none;
-  border: none;
-  border-radius: 3px;
-  width: 100%;
-  padding: 0.5rem 0.5rem;
-  font-family: inherit;
-  font-size: 1rem;
-  background-color: rgb(220, 241, 243);
-  margin-bottom: 1rem;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-.SignUpSubmit {
-  outline: none;
-  border: none;
-  border-radius: 3px;
-  width: auto;
-  padding: 0.5rem 0.5rem;
-  background-color: #b3dadf;
-  color: #21656e;
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-.SignUpSubmit:hover {
-  color: #071618;
-}
-
 .ToDoList {
   margin-bottom: 1rem;
   width: 50vw;
@@ -292,17 +293,22 @@ body {
   animation-name: display;
 }
 
-.Icon {
-  right: 0;
-  cursor: pointer;
-  fill: #72152c;
-  height: 2rem;
-  width: auto;
-  outline: none;
-}
+.Icons-container {
+  display: flex;
 
-.Icon:first-child {
-  fill: #0d920d;
+  .Icon {
+    margin-left: 0.5rem;
+    right: 0;
+    cursor: pointer;
+    height: 1.7rem;
+    width: auto;
+    outline: none;
+    align-self: center;
+
+    &:first-child {
+      margin-top: 2px;
+    }
+  }
 }
 
 @keyframes display {
@@ -357,33 +363,37 @@ body {
   z-index: 105;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
 }
 
-.ErrorContainer {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  background: linear-gradient(45deg, #6db4be, #071618);
-  align-items: center;
-  justify-content: center;
-  z-index: 110;
-  border-radius: 3px;
-  margin: 1rem;
-  height: 90%;
-}
-
-.ErrorText {
-  border-radius: 3px;
+.Modal {
+  position: fixed;
+  z-index: 500;
+  background-color: #21656e;
   width: 70%;
+  border: 1px solid #b3dadf;
+  box-shadow: 1px 1px 1px black;
+  padding: 16px;
+  left: 15%;
+  top: 30%;
+  box-sizing: border-box;
+  transition: all 0.3s ease-out;
   font-family: inherit;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #e7b52b;
+  font-size: 1rem;
+  color: #b3dadf;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .Button {
+    margin-left: 1rem;
+  }
 }
 
-@media (max-width: 40rem) {
-  .ErrorContainer {
-    width: 90%;
+@media (min-width: 40rem) {
+  .Modal {
+    width: 500px;
+    left: calc(50% - 250px);
   }
 }

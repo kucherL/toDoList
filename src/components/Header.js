@@ -1,15 +1,8 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Button from "./UI/Button";
 
 const Header = (props) => {
-  let history = useHistory();
-
-  const newLogout = () => {
-    history.push("/");
-    props.logout();
-  };
-
   return (
     <div className="Header">
       <p className="Header__copyright">
@@ -29,7 +22,7 @@ const Header = (props) => {
         <Link to="/complited" className="Link">
           Complited tasks
         </Link>
-        <Button clicked={newLogout}>Sign out</Button>
+        <Button clicked={props.logoutWarningHandler}>Sign out</Button>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import React from "react";
-import addIcon from "../assets/add.svg";
-import minusIcon from "../assets/minus1.svg";
+import checkIcon from "../assets/check-square-o.svg";
+import trashIcon from "../assets/trash.svg";
 
 const toDoList = (props) => {
   return (
@@ -8,13 +8,13 @@ const toDoList = (props) => {
       {props.task.temporary}
       <div className="Icons-container">
         <img
-          src={addIcon}
+          src={checkIcon}
           alt="add-icon"
           className="Icon"
           onClick={props.clickComplite}
         />
         <img
-          src={minusIcon}
+          src={trashIcon}
           alt="minus-icon"
           className="Icon"
           onClick={props.clickDel}

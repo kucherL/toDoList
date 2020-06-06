@@ -1,7 +1,4 @@
-import React from "react";
 import { firestore } from "./firebase";
-
-import WithError from "./components/UI/WithError";
 
 export const fetchList = async (user) => {
   const response = await firestore.collection(`users/${user}/tasks`).get();
@@ -24,7 +21,7 @@ export const compliteTask = async (id, user, complitedTime) => {
   let complitedUsersTask = await firestore
     .doc(`users/${user}/tasks/${id}`)
     .get();
-    complitedUsersTask = {
+  complitedUsersTask = {
     id: complitedUsersTask.id,
     complitedTime: complitedTime,
     ...complitedUsersTask.data(),

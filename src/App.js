@@ -6,7 +6,7 @@ import ToDoList from "./components/ToDoList";
 import Header from "./components/Header";
 import Auth from "./components/Auth";
 import Backdrop from "./components/UI/Backdrop";
-import WithError from "./components/UI/WithError";
+import Modal from "./components/UI/Modal";
 import { auth, createUserProfile, signOut, signInWithGoogle } from "./firebase";
 import {
   fetchList,
@@ -31,6 +31,8 @@ const App = () => {
   const [passwordSignIn, setPasswordSignIn] = useState("");
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
+  const [signInChange, setSignInChange] = useState(true);
+  const [logoutWarning, setLogoutWarning] = useState(false);
 
   useEffect(() => {
     auth.onAuthStateChanged(async (user) => {
@@ -42,7 +44,6 @@ const App = () => {
         try {
         } catch (err) {
           setError(err.message);
-          deleteErrorMessage();
         }
       }
     });
@@ -73,7 +74,6 @@ const App = () => {
       setAuthShow(false);
     } catch (err) {
       setError(err.message);
-      deleteErrorMessage();
     }
     setEmailSignUp("");
     setPasswordSignUp("");
@@ -85,7 +85,6 @@ const App = () => {
       await auth.signInWithEmailAndPassword(emailSignIn, passwordSignIn);
     } catch (err) {
       setError(err.message);
-      deleteErrorMessage();
     }
     setEmailSignIn("");
     setPasswordSignIn("");
@@ -96,7 +95,6 @@ const App = () => {
       signInWithGoogle();
     } catch (err) {
       setError(err.message);
-      deleteErrorMessage();
     }
   };
 
@@ -106,6 +104,10 @@ const App = () => {
     setUser(null);
     signOut();
     setAuthShow(true);
+  };
+
+  const logoutWarningHandler = () => {
+    setLogoutWarning(!logoutWarning);
   };
 
   const fetchTodoList = async (user) => {
@@ -133,7 +135,6 @@ const App = () => {
       setList(list.concat(toDoData));
     } catch (err) {
       setError(err.message);
-      deleteErrorMessage();
     }
     setTemporary("");
   };
@@ -165,18 +166,19 @@ const App = () => {
       setComplited(posts);
     } catch (err) {
       setError(err.message);
-      deleteErrorMessage();
     }
   };
 
   const deleteErrorMessage = () => {
-    setTimeout(() => {
-      setError(null);
-    }, 3000);
+    setError(null);
     setEmailSignUp("");
     setPasswordSignUp("");
     setEmailSignIn("");
     setPasswordSignIn("");
+  };
+
+  const signInShowHandler = () => {
+    setSignInChange(!signInChange);
   };
 
   const tasksList = list.map((task, index) => {
@@ -192,6 +194,8 @@ const App = () => {
 
   const authForm = (
     <Auth
+      signInShowHandler={signInShowHandler}
+      signInChange={signInChange}
       emailSignUp={emailSignUp}
       emailSignUpChangeHandler={emailSignUpChangeHandler}
       passwordSignUp={passwordSignUp}
@@ -209,10 +213,17 @@ const App = () => {
   return (
     <Router>
       <div className="App">
-        {authShow ? null : <Header logout={logout} />}
+        {authShow ? null : (
+          <Header logoutWarningHandler={logoutWarningHandler} />
+        )}
         <Switch>
           <Fragment>
-            {error ? <WithError>{error}</WithError> : null}
+            {logoutWarning ? (
+              <Modal error={error} logout={logout} clean={logoutWarningHandler}>
+                Do you really want to sign out ?
+              </Modal>
+            ) : null}
+            {error ? <Modal clean={deleteErrorMessage}>{error}</Modal> : null}
             {authShow ? <Backdrop /> : null}
             {authShow ? authForm : null}
             <Route path="/complited">
