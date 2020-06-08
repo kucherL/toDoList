@@ -1,3 +1,11 @@
+It's a simple ToDo List where you can create tasks, delete them, mark and check complited. To test the app, you need to sign up.
+
+Made with Firebase, React.
+
+View [live](https://todo-list-c5bb2.firebaseapp.com/).
+
+---------------------------
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
