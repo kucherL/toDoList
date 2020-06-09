@@ -6,7 +6,7 @@ service cloud.firestore {
       	allow read, update, delete, create: if request.auth.uid == userId;
       }
       match /complited/{complitedId} {
-      	allow read: if request.auth.uid == userId;
+      	allow read, update, delete, create: if request.auth.uid == userId;
       }
     }
   }
